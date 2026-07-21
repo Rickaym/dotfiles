@@ -32,6 +32,15 @@ install_omz() {
   RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
+install_zsh_plugins() {
+  local dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins"
+  log "Installing zsh plugins"
+  [ -d "$dir/zsh-autosuggestions" ] || \
+    git clone -q https://github.com/zsh-users/zsh-autosuggestions "$dir/zsh-autosuggestions"
+  [ -d "$dir/zsh-syntax-highlighting" ] || \
+    git clone -q https://github.com/zsh-users/zsh-syntax-highlighting "$dir/zsh-syntax-highlighting"
+}
+
 install_chafa() {
   command -v chafa >/dev/null && { echo "chafa present"; return; }
   log "Installing chafa"
@@ -82,6 +91,7 @@ restore_yazi_flavors() {
 
 main() {
   install_omz
+  install_zsh_plugins
   install_chafa
   install_yazi
   install_resvg
