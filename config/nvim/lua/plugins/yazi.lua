@@ -8,6 +8,8 @@ return {
     },
     opts = {
       open_for_directories = false,
+      -- on quit, set nvim's cwd to wherever yazi ended up
+      change_neovim_cwd_on_close = true,
     },
   },
 }
