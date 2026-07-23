@@ -5,6 +5,8 @@ require "nvchad.options"
 -- local o = vim.o
 -- o.cursorlineopt ='both' -- to enable cursorline!
 
+vim.opt.virtualedit = "onemore"
+
 -- Route the system clipboard through OSC 52 so yanks reach the local
 -- machine over SSH/tmux. Yank with y in visual mode to copy.
 vim.opt.clipboard = "unnamedplus"
