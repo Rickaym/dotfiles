@@ -18,8 +18,14 @@ vim.g.clipboard = {
     ["+"] = osc52.copy "+",
     ["*"] = osc52.copy "*",
   },
+  -- osc52.paste queries the terminal and blocks when it does not reply.
+  -- Paste from the unnamed register instead so P never waits on the terminal.
   paste = {
-    ["+"] = osc52.paste "+",
-    ["*"] = osc52.paste "*",
+    ["+"] = function()
+      return vim.split(vim.fn.getreg '"', "\n")
+    end,
+    ["*"] = function()
+      return vim.split(vim.fn.getreg '"', "\n")
+    end,
   },
 }
